@@ -15,9 +15,9 @@ Manually creating AD accounts one by one is repetitive and easy to get wrong —
 Sysadmins handling user onboarding in a Windows/Active Directory environment. Works well for batch onboarding or just a single new user.
 
 ## Requirements
-PowerShell with the ActiveDirectory module (RSAT)
-Credentials with permissions to create AD users — the script will prompt via Get-Credential if $cred isn't already set in your session
-A CSV file at C:\Logs\newusers.csv with these columns:
+- PowerShell with the ActiveDirectory module (RSAT)
+- Credentials with permissions to create AD users — the script will prompt via `Get-Credential` if `$cred` isn't already set in your session
+- A CSV file at `C:\Logs\newusers.csv` with these columns:
 
 ```plaintext
 GivenName,SurName,SamAccountName
