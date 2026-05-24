@@ -7,9 +7,11 @@ if (-not $cred) {
 
 foreach ($user in $newUsers) {
 
+  # Common variables that need adjustments to fit your environment
   $SecurePassword = ConvertTo-SecureString "P@ssword1" -AsPlainText -Force
   $ouPath = "OU=staging users,DC=lab,DC=local"
   $domain = "@lab.local"
+  $homeDirectory = "\\DC01\Shares\Home\$($user.SamAccountName)" # <-- home directory path, adjust as needed
 
   # CSV Values combined
   $fullName = "$($user.GivenName) $($user.SurName)"
@@ -24,10 +26,15 @@ foreach ($user in $newUsers) {
     AccountPassword       = $SecurePassword
     ChangePasswordAtLogon = $true 
     Enabled               = $true
-    #PasswordNeverExpires  = $false <-- just ignore it for now (it's a syntax quirks)
     Path                  = $ouPath
-    PassThru              = $true # <-- this will cauht me off guard for sure
     Credential            = $cred
+
+    # Home Folder Settings
+    HomeDrive             = "H:"
+    HomeDirectory         = $homeDirectory 
+
+    # Shell feedback
+    PassThru              = $true
   }
   
   New-ADUser @userParams
