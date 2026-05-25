@@ -1,5 +1,5 @@
 # AD User Onboarding Script
-*Disclaimer: this script is for a lab environment and meant for learning purposes only*
+*This script is for a lab environment and meant for learning purposes only*
 
 ## What does it do
 Reads a CSV of new users and creates their Active Directory accounts. 
